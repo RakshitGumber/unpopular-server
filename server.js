@@ -12,8 +12,6 @@ import posts from "./routes/post/index.js";
 const app = express();
 app.use(cors());
 
-const httpServer = createServer(app);
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -34,12 +32,11 @@ Promise.all([DbConnection()])
     console.log("Server connected to Database successfully");
   })
   .then(() => {
-    httpServer.listen(process.env.PORT || 8080, () => {
+    app.listen(process.env.PORT || 3000, function () {
       console.log(
-        "Server Started on " +
-          process.env.PORT +
-          "\nTo connect, go to: http://localhost:" +
-          process.env.PORT
+        "Express server listening on port %d in %s mode",
+        this.address().port,
+        app.settings.env
       );
     });
   });
