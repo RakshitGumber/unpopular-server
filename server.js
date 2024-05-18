@@ -1,6 +1,5 @@
 import express from "express";
 import { createServer } from "http";
-import { Server } from "socket.io";
 import DbConnection from "./db/index.js";
 import home from "./routes/home/index.js";
 import path from "path";
@@ -14,7 +13,6 @@ const app = express();
 app.use(cors());
 
 const httpServer = createServer(app);
-const io = new Server(httpServer);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,7 +34,7 @@ Promise.all([DbConnection()])
     console.log("Server connected to Database successfully");
   })
   .then(() => {
-    httpServer.listen(process.env.PORT, () => {
+    httpServer.listen(process.env.PORT || 3000, () => {
       console.log(
         "Server Started on " +
           process.env.PORT +
