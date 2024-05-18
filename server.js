@@ -1,5 +1,4 @@
 import express from "express";
-import { createServer } from "http";
 import DbConnection from "./db/index.js";
 import home from "./routes/home/index.js";
 import path from "path";
