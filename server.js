@@ -8,6 +8,9 @@ import cors from "cors";
 import user from "./routes/user/index.js";
 import bodyParser from "body-parser";
 import posts from "./routes/post/index.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());

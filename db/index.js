@@ -1,10 +1,9 @@
 import { connect } from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 const DbConnection = async () => {
-  connect(
-    process.env.MONGO_URI ||
-      "mongodb+srv://gumberrakshit:v9A9gA8XDmQBTOW8@maincluster.ouhdv9f.mongodb.net/?retryWrites=true&w=majority&appName=MainCluster"
-  );
+  connect(process.env.MONGO_URI);
 };
 
 export default DbConnection;
