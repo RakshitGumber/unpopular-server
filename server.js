@@ -34,7 +34,7 @@ Promise.all([DbConnection()])
     console.log("Server connected to Database successfully");
   })
   .then(() => {
-    httpServer.listen(process.env.PORT || 3000, () => {
+    httpServer.listen(process.env.PORT || 8080, () => {
       console.log(
         "Server Started on " +
           process.env.PORT +
