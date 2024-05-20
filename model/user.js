@@ -17,14 +17,15 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-  bio: { type: String },
+  desc: { type: String },
+  location: { value: String, isPublic: { type: Boolean, default: true } },
   password: {
     type: String,
     required: true,
   },
   dateOfBirth: {
-    type: Date,
-    isPublic: {type: Boolean, default: true},
+    value: Date,
+    isPublic: { type: Boolean, default: true },
   },
   createdAt: {
     type: Date,

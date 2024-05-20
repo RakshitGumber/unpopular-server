@@ -101,30 +101,39 @@ export const updateUser = async (req, res) => {
     firstName,
     dateOfBirth,
     location,
-    bio,
+    desc,
+    isLocationPublic,
+    isDOBPublic,
   } = req.body;
 
   try {
-    const updatedFields = {};
+    const updatedFields = {
+      dateOfBirth: {},
+      location: {},
+    };
     if (profilepic) updatedFields.profilepic = profilepic;
     if (username) updatedFields.username = username;
     if (lastName) updatedFields.lastName = lastName;
     if (firstName) updatedFields.firstName = firstName;
-    if (dateOfBirth) updatedFields.dateOfBirth = dateOfBirth;
-    if (location) updatedFields.location = location;
-    if (bio) updatedFields.bio = bio;
+    if (dateOfBirth) updatedFields.dateOfBirth.value = dateOfBirth;
+    if (location) updatedFields.location.value = location;
+    if (desc) updatedFields.desc = desc;
+    if (isDOBPublic !== undefined)
+      updatedFields.dateOfBirth.isPublic = isDOBPublic;
+    if (isLocationPublic !== undefined)
+      updatedFields.location.isPublic = isLocationPublic;
     const updatedUser = await Users.findByIdAndUpdate(_id, updatedFields, {
       new: true,
     });
 
     if (!updatedUser) {
-      return res.status(404).send("Post not found");
+      return res.status(404).send("User Not found");
     }
 
     res.json(updatedUser);
   } catch (error) {
     // Handle any errors
     console.error(error);
-    res.status(500).send("Error updating post");
+    res.status(500).send("Error updating User");
   }
 };
