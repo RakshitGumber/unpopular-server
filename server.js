@@ -32,11 +32,9 @@ Promise.all([DbConnection()])
     console.log("Server connected to Database successfully");
   })
   .then(() => {
-    app.listen(process.env.PORT || 3000, function () {
+    app.listen(process.env.PORT, function () {
       console.log(
-        "Express server listening on port %d in %s mode",
-        this.address().port,
-        app.settings.env
+        `App listening on port ${process.env.PORT}\nClick the link to connect to the server: http://localhost:${process.env.PORT}`
       );
     });
   });
